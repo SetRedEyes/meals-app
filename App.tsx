@@ -2,20 +2,12 @@ import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StatusBar} from 'expo-status-bar';
-import {CategoriesScreen} from './src/screens/CategoriesScreen.tsx/CategoriesScreen';
 import {MealsOverviewScreen} from './src/screens/MealsOverviewScreen/MealsOverviewScreen';
-import {IMealsCategoriesScreenProps} from './src/types/Category';
+import {ScreenName, ScreenNameStackParamList} from './src/navigation/types';
+import { CategoriesScreen } from './src/screens/CategoriesScreen.tsx/CategoriesScreen';
 
 const Stack = createNativeStackNavigator<ScreenNameStackParamList>();
 
-export enum ScreenName {
-  MEALS_CATEGORIES = 'MealsCategories',
-  MEALS_OVERVIEW = 'MealsOverview',
-}
-export type ScreenNameStackParamList = {
-  [ScreenName.MEALS_CATEGORIES]: undefined;
-  [ScreenName.MEALS_OVERVIEW]: IMealsCategoriesScreenProps;
-};
 export default function App() {
   const screenOptions = {
     headerBackTitle: 'Back',

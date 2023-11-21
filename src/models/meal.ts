@@ -1,4 +1,6 @@
-class Meal {
+import {IMeal} from '../types/Meal';
+
+class Meal implements IMeal {
   id: string;
   categoryIds: string[];
   title: string;
