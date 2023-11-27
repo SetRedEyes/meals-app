@@ -1,4 +1,4 @@
-import {useCallback, useLayoutEffect} from 'react';
+import {useCallback, useLayoutEffect, useMemo} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
 import {IMeal} from '../../types/Meal';
@@ -31,14 +31,19 @@ export const MealsOverviewScreen = ({
     });
   }, [navigation, categoryId]);
 
-  const displayedMeals = MEALS.filter(item => {
-    return item.categoryIds.indexOf(categoryId) >= 0;
-  });
+  const displayedMeals = useMemo(
+    () =>
+      MEALS.filter(item => {
+        return item.categoryIds.indexOf(categoryId) >= 0;
+      }),
+    [categoryId],
+  );
 
   const renderItem = useCallback(
     ({item}: {item: IMeal}) => {
       return (
         <MealItem
+          id={item.id}
           title={item.title}
           imageUrl={item.imageUrl}
           duration={item.duration}

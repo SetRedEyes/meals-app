@@ -13,3 +13,7 @@ export interface IMeal {
   isVegetarian: boolean;
   isLactoseFree: boolean;
 }
+
+export interface IMealsDetailsScreenProps {
+  mealId: string;
+}

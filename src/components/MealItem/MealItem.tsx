@@ -1,6 +1,12 @@
 import {Image, Platform, Pressable, StyleSheet, Text, View} from 'react-native';
+import {MealDetailsScreen} from '../../screens/MealDetailsScreen/MealDetailsScreen';
+import {useCallback} from 'react';
+import {ScreenName, ScreenNameStackParamList} from '../../navigation/types';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
 
 interface MealItemProps {
+  id: string;
   title: string;
   imageUrl: string;
   duration: number;
@@ -9,17 +15,35 @@ interface MealItemProps {
 }
 
 export const MealItem = ({
+  id,
   title,
   imageUrl,
   duration,
   complexity,
   affordability,
 }: MealItemProps) => {
+  const navigation =
+    useNavigation<
+      NativeStackNavigationProp<
+        ScreenNameStackParamList,
+        ScreenName.MEALS_CATEGORIES
+      >
+    >();
+
+  const pressHandler = useCallback(
+    () =>
+      navigation.navigate(ScreenName.MEALS_DETAILS, {
+        mealId: id,
+      }),
+    [navigation],
+  );
+
   return (
     <View style={styles.mealItem}>
       <Pressable
         android_ripple={{color: '#ccc'}}
-        style={({pressed}) => pressed && styles.buttonPressed}>
+        style={({pressed}) => pressed && styles.buttonPressed}
+        onPress={pressHandler}>
         <View style={styles.innerContainer}>
           <View>
             <Image source={{uri: imageUrl}} style={styles.image} />
