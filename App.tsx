@@ -5,6 +5,7 @@ import {StatusBar} from 'expo-status-bar';
 import {MealsOverviewScreen} from './src/screens/MealsOverviewScreen/MealsOverviewScreen';
 import {ScreenName, ScreenNameStackParamList} from './src/navigation/types';
 import {CategoriesScreen} from './src/screens/CategoriesScreen.tsx/CategoriesScreen';
+import {useMemo} from 'react';
 
 const Stack = createNativeStackNavigator<ScreenNameStackParamList>();
 
@@ -20,13 +21,22 @@ export default function App() {
     title: 'All Categories',
   };
 
-  const mealsOverviewScreenOptions = {
-    title: 'Meals Overview',
-  };
+  // const mealsOverviewScreenOptions = useMemo(() => {
+  //   return ({
+  //     route,
+  //   }: {
+  //     route: RouteProp<ScreenNameStackParamList>;
+  //     navigation: any;
+  //   }): NativeStackNavigationOptions => {
+  //     return {
+  //       title: route?.params?.categoryId,
+  //     };
+  //   };
+  // }, []);
 
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <NavigationContainer>
         <Stack.Navigator screenOptions={screenOptions}>
           <Stack.Screen
@@ -37,7 +47,7 @@ export default function App() {
           <Stack.Screen
             name={ScreenName.MEALS_OVERVIEW}
             component={MealsOverviewScreen}
-            options={mealsOverviewScreenOptions}
+            // options={mealsOverviewScreenOptions}
           />
         </Stack.Navigator>
       </NavigationContainer>
