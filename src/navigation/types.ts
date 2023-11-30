@@ -2,9 +2,9 @@ import {IMealsCategoriesScreenProps} from '../types/Category';
 import {IMealsDetailsScreenProps} from '../types/Meal';
 
 export enum ScreenName {
-  MEALS_CATEGORIES = 'MealsCategories',
-  MEALS_OVERVIEW = 'MealsOverview',
-  MEALS_DETAILS = 'MealsDetails',
+  MEALS_CATEGORIES = 'Meals Categories',
+  MEALS_OVERVIEW = 'Meals Overview',
+  MEALS_DETAILS = 'Meals Details',
 }
 
 export type ScreenNameStackParamList = {

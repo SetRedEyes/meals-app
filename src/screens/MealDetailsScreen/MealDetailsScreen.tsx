@@ -1,5 +1,5 @@
-import {useLayoutEffect, useMemo} from 'react';
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {useLayoutEffect, useMemo, useCallback} from 'react';
+import {Button, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {ScreenName, ScreenNameStackParamList} from '../../navigation/types';
 import {MEALS} from '../../data/dummy-data';
@@ -26,11 +26,18 @@ export const MealDetailsScreen = ({
     [mealId],
   );
 
+  const headerButtonPressHandler = useCallback(() => {
+    console.log('Header button pressed!');
+  }, []);
+
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: selectedMeal?.title,
+      headerRight: () => (
+        <Button title="Tap me" onPress={headerButtonPressHandler} />
+      ),
     });
-  }, [navigation, selectedMeal]);
+  }, [navigation, headerButtonPressHandler]);
+
   return (
     <>
       {selectedMeal ? (
@@ -41,7 +48,6 @@ export const MealDetailsScreen = ({
             duration={selectedMeal.duration}
             complexity={selectedMeal.complexity}
             affordability={selectedMeal.affordability}
-            // style={styles.detailText}
             textStyle={styles.detailText}
           />
           <View style={styles.listContainer}>

@@ -5,7 +5,6 @@ interface MealDetailsProps {
   duration: number;
   complexity: string;
   affordability: string;
-  style: ViewStyle;
   textStyle: TextStyle;
 }
 
@@ -13,20 +12,14 @@ export const MealDetails = ({
   duration,
   complexity,
   affordability,
-  style,
   textStyle,
 }: MealDetailsProps) => {
-  const detailsStyle = useMemo(
-    () => StyleSheet.flatten([styles.details, style]),
-    [style],
-  );
-
   const detailItemStyle = useMemo(
     () => StyleSheet.flatten([styles.detailItem, textStyle]),
     [textStyle],
   );
   return (
-    <View style={detailsStyle}>
+    <View style={styles.details}>
       <Text style={detailItemStyle}>{duration}m</Text>
       <Text style={detailItemStyle}>{complexity.toUpperCase()}</Text>
       <Text style={detailItemStyle}>{affordability.toUpperCase()}</Text>
