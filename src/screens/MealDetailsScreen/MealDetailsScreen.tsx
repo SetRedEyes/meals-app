@@ -6,6 +6,7 @@ import {MEALS} from '../../data/dummy-data';
 import {MealDetails} from '../../components/MealDetails/MealDetails';
 import {MealDetailSubtitle} from '../../components/MealDetailSubtitle/MealDetailSubtitle';
 import {MealDetailList} from '../../components/MealDetailList/MealDetailList';
+import {IconButton} from '../../components/IconButton/IconButton';
 
 interface MealDetailsScreenProps {
   route: RouteProp<ScreenNameStackParamList, ScreenName.MEALS_DETAILS>;
@@ -33,7 +34,11 @@ export const MealDetailsScreen = ({
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Button title="Tap me" onPress={headerButtonPressHandler} />
+        <IconButton
+          icon="star"
+          color="white"
+          onPress={headerButtonPressHandler}
+        />
       ),
     });
   }, [navigation, headerButtonPressHandler]);
