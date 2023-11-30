@@ -1,9 +1,9 @@
-import {Image, Platform, Pressable, StyleSheet, Text, View} from 'react-native';
-import {MealDetailsScreen} from '../../screens/MealDetailsScreen/MealDetailsScreen';
 import {useCallback} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {Image, Platform, Pressable, StyleSheet, Text, View} from 'react-native';
 import {ScreenName, ScreenNameStackParamList} from '../../navigation/types';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {useNavigation} from '@react-navigation/native';
+import {MealDetails} from '../MealDetails/MealDetails';
 
 interface MealItemProps {
   id: string;
@@ -49,11 +49,11 @@ export const MealItem = ({
             <Image source={{uri: imageUrl}} style={styles.image} />
             <Text style={styles.title}>{title}</Text>
           </View>
-          <View style={styles.details}>
-            <Text style={styles.detailItem}>{duration}m</Text>
-            <Text style={styles.detailItem}>{complexity.toUpperCase()}</Text>
-            <Text style={styles.detailItem}>{affordability.toUpperCase()}</Text>
-          </View>
+          <MealDetails
+            duration={duration}
+            complexity={complexity}
+            affordability={affordability}
+          />
         </View>
       </Pressable>
     </View>

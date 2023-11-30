@@ -1,10 +1,10 @@
-import {FlatList} from 'react-native';
-import {CATEGORIES} from '../../data/dummy-data';
 import {useCallback} from 'react';
-import {CategoryGridTile} from '../../components/CategoryGridTile/CategoryGridTile';
-import {ICategory} from '../../types/Category';
+import {FlatList} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import {ScreenName, ScreenNameStackParamList} from '../../navigation/types';
+import {CATEGORIES} from '../../data/dummy-data';
+import {ICategory} from '../../types/Category';
+import {CategoryGridTile} from '../../components/CategoryGridTile/CategoryGridTile';
 
 interface CategoriesScreenProps {
   navigation: NavigationProp<
