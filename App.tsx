@@ -6,7 +6,7 @@ import {MealsOverviewScreen} from './src/screens/MealsOverviewScreen/MealsOvervi
 import {ScreenName, ScreenNameStackParamList} from './src/navigation/types';
 import {CategoriesScreen} from './src/screens/CategoriesScreen/CategoriesScreen';
 import {useMemo} from 'react';
-import { MealDetailsScreen } from './src/screens/MealDetailsScreen/MealDetailsScreen';
+import {MealDetailsScreen} from './src/screens/MealDetailsScreen/MealDetailsScreen';
 
 const Stack = createNativeStackNavigator<ScreenNameStackParamList>();
 
@@ -22,19 +22,6 @@ export default function App() {
     title: 'All Categories',
   };
 
-  // const mealsOverviewScreenOptions = useMemo(() => {
-  //   return ({
-  //     route,
-  //   }: {
-  //     route: RouteProp<ScreenNameStackParamList>;
-  //     navigation: any;
-  //   }): NativeStackNavigationOptions => {
-  //     return {
-  //       title: route?.params?.categoryId,
-  //     };
-  //   };
-  // }, []);
-
   return (
     <>
       <StatusBar style="light" />
@@ -48,12 +35,10 @@ export default function App() {
           <Stack.Screen
             name={ScreenName.MEALS_OVERVIEW}
             component={MealsOverviewScreen}
-            // options={mealsOverviewScreenOptions}
           />
           <Stack.Screen
             name={ScreenName.MEALS_DETAILS}
             component={MealDetailsScreen}
-            // options={mealsOverviewScreenOptions}
           />
         </Stack.Navigator>
       </NavigationContainer>

@@ -1,21 +1,35 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {useMemo} from 'react';
+import {StyleSheet, Text, TextStyle, View, ViewStyle} from 'react-native';
 
 interface MealDetailsProps {
   duration: number;
   complexity: string;
   affordability: string;
+  style: ViewStyle;
+  textStyle: TextStyle;
 }
 
 export const MealDetails = ({
   duration,
   complexity,
   affordability,
+  style,
+  textStyle,
 }: MealDetailsProps) => {
+  const detailsStyle = useMemo(
+    () => StyleSheet.flatten([styles.details, style]),
+    [style],
+  );
+
+  const detailItemStyle = useMemo(
+    () => StyleSheet.flatten([styles.detailItem, textStyle]),
+    [textStyle],
+  );
   return (
-    <View style={styles.details}>
-      <Text style={styles.detailItem}>{duration}m</Text>
-      <Text style={styles.detailItem}>{complexity.toUpperCase()}</Text>
-      <Text style={styles.detailItem}>{affordability.toUpperCase()}</Text>
+    <View style={detailsStyle}>
+      <Text style={detailItemStyle}>{duration}m</Text>
+      <Text style={detailItemStyle}>{complexity.toUpperCase()}</Text>
+      <Text style={detailItemStyle}>{affordability.toUpperCase()}</Text>
     </View>
   );
 };

@@ -1,9 +1,11 @@
-import {useMemo} from 'react';
-import {Image, Text, View} from 'react-native';
+import {useLayoutEffect, useMemo} from 'react';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {ScreenName, ScreenNameStackParamList} from '../../navigation/types';
 import {MEALS} from '../../data/dummy-data';
 import {MealDetails} from '../../components/MealDetails/MealDetails';
+import {MealDetailSubtitle} from '../../components/MealDetailSubtitle/MealDetailSubtitle';
+import {MealDetailList} from '../../components/MealDetailList/MealDetailList';
 
 interface MealDetailsScreenProps {
   route: RouteProp<ScreenNameStackParamList, ScreenName.MEALS_DETAILS>;
@@ -24,29 +26,65 @@ export const MealDetailsScreen = ({
     [mealId],
   );
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: selectedMeal?.title,
+    });
+  }, [navigation, selectedMeal]);
   return (
-    <View>
+    <>
       {selectedMeal ? (
-        <>
-          <Image source={{uri: selectedMeal.imageUrl}} />
-          <Text>Meal Details Screen</Text>
+        <ScrollView style={styles.rootContainer}>
+          <Image style={styles.image} source={{uri: selectedMeal.imageUrl}} />
+          <Text style={styles.title}>{selectedMeal.title}</Text>
           <MealDetails
             duration={selectedMeal.duration}
             complexity={selectedMeal.complexity}
             affordability={selectedMeal.affordability}
+            // style={styles.detailText}
+            textStyle={styles.detailText}
           />
-          <Text>Ingredients</Text>
-          {selectedMeal.ingredients.map(ingredient => (
-            <Text key={ingredient}>{ingredient}</Text>
-          ))}
-          <Text>Steps</Text>
-          {selectedMeal.steps.map(steps => (
-            <Text key={steps}>{steps}</Text>
-          ))}
-        </>
+          <View style={styles.listContainer}>
+            <MealDetailSubtitle title="Ingredients" />
+            <MealDetailList data={selectedMeal.ingredients} />
+            <MealDetailSubtitle title="Steps" />
+            <MealDetailList data={selectedMeal.steps} />
+          </View>
+        </ScrollView>
       ) : (
-        <Text>Meal not found!</Text>
+        <Text style={styles.notFound}>Meal not found!</Text>
       )}
-    </View>
+    </>
   );
 };
+
+const styles = StyleSheet.create({
+  rootContainer: {
+    marginBottom: 32,
+  },
+  image: {
+    width: '100%',
+    height: 350,
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 24,
+    margin: 8,
+    textAlign: 'center',
+    color: 'white',
+  },
+  detailText: {
+    color: 'white',
+  },
+  listContainer: {
+    width: '80%',
+    alignSelf: 'center',
+  },
+  notFound: {
+    fontWeight: 'bold',
+    fontSize: 24,
+    margin: 24,
+    textAlign: 'center',
+    color: 'white',
+  },
+});
