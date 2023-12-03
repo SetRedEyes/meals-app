@@ -1,14 +1,24 @@
 import {IMealsCategoriesScreenProps} from '../types/Category';
 import {IMealsDetailsScreenProps} from '../types/Meal';
 
-export enum ScreenName {
-  MEALS_CATEGORIES = 'Meals Categories',
+export enum StackScreenName {
   MEALS_OVERVIEW = 'Meals Overview',
   MEALS_DETAILS = 'Meals Details',
 }
 
+export enum DrawerScreenName {
+  DRAWER = 'Categories',
+  MEALS_CATEGORIES = 'Meals Categories',
+  FAVORITES = 'Favorites',
+}
+
 export type ScreenNameStackParamList = {
-  [ScreenName.MEALS_CATEGORIES]: undefined;
-  [ScreenName.MEALS_OVERVIEW]: IMealsCategoriesScreenProps;
-  [ScreenName.MEALS_DETAILS]: IMealsDetailsScreenProps;
+  [StackScreenName.MEALS_OVERVIEW]: IMealsCategoriesScreenProps;
+  [StackScreenName.MEALS_DETAILS]: IMealsDetailsScreenProps;
+};
+
+export type ScreenNameDrawerParamList = {
+  [DrawerScreenName.MEALS_CATEGORIES]: undefined;
+  [DrawerScreenName.DRAWER]: undefined;
+  [DrawerScreenName.FAVORITES]: undefined;
 };

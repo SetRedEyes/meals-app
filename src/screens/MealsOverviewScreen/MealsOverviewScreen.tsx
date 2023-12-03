@@ -4,14 +4,17 @@ import {RouteProp} from '@react-navigation/native';
 import {IMeal} from '../../types/Meal';
 import {MEALS, CATEGORIES} from '../../data/dummy-data';
 import {MealItem} from '../../components/MealItem/MealItem';
-import {ScreenName, ScreenNameStackParamList} from '../../navigation/types';
+import {
+  StackScreenName,
+  ScreenNameStackParamList,
+} from '../../navigation/types';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 interface MealsOverviewScreenProps {
-  route: RouteProp<ScreenNameStackParamList, ScreenName.MEALS_OVERVIEW>;
+  route: RouteProp<ScreenNameStackParamList, StackScreenName.MEALS_OVERVIEW>;
   navigation: NativeStackNavigationProp<
     ScreenNameStackParamList,
-    ScreenName.MEALS_OVERVIEW
+    StackScreenName.MEALS_OVERVIEW
   >;
 }
 

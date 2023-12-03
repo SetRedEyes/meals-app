@@ -1,7 +1,10 @@
 import {useCallback} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {Image, Platform, Pressable, StyleSheet, Text, View} from 'react-native';
-import {ScreenName, ScreenNameStackParamList} from '../../navigation/types';
+import {
+  StackScreenName,
+  ScreenNameStackParamList,
+} from '../../navigation/types';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MealDetails} from '../MealDetails/MealDetails';
 
@@ -26,13 +29,13 @@ export const MealItem = ({
     useNavigation<
       NativeStackNavigationProp<
         ScreenNameStackParamList,
-        ScreenName.MEALS_CATEGORIES
+        StackScreenName.MEALS_CATEGORIES
       >
     >();
 
   const pressHandler = useCallback(
     () =>
-      navigation.navigate(ScreenName.MEALS_DETAILS, {
+      navigation.navigate(StackScreenName.MEALS_DETAILS, {
         mealId: id,
       }),
     [navigation],

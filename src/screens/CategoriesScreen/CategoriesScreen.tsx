@@ -1,7 +1,10 @@
 import {useCallback} from 'react';
 import {FlatList} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
-import {ScreenName, ScreenNameStackParamList} from '../../navigation/types';
+import {
+  StackScreenName,
+  ScreenNameStackParamList,
+} from '../../navigation/types';
 import {CATEGORIES} from '../../data/dummy-data';
 import {ICategory} from '../../types/Category';
 import {CategoryGridTile} from '../../components/CategoryGridTile/CategoryGridTile';
@@ -9,14 +12,14 @@ import {CategoryGridTile} from '../../components/CategoryGridTile/CategoryGridTi
 interface CategoriesScreenProps {
   navigation: NavigationProp<
     ScreenNameStackParamList,
-    ScreenName.MEALS_CATEGORIES
+    StackScreenName.MEALS_CATEGORIES
   >;
 }
 
 export const CategoriesScreen = ({navigation}: CategoriesScreenProps) => {
   const pressHandler = useCallback(
     (id: string) =>
-      navigation.navigate(ScreenName.MEALS_OVERVIEW, {
+      navigation.navigate(StackScreenName.MEALS_OVERVIEW, {
         categoryId: id,
       }),
     [navigation],

@@ -1,7 +1,10 @@
 import {useLayoutEffect, useMemo, useCallback} from 'react';
 import {Button, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
-import {ScreenName, ScreenNameStackParamList} from '../../navigation/types';
+import {
+  StackScreenName,
+  ScreenNameStackParamList,
+} from '../../navigation/types';
 import {MEALS} from '../../data/dummy-data';
 import {MealDetails} from '../../components/MealDetails/MealDetails';
 import {MealDetailSubtitle} from '../../components/MealDetailSubtitle/MealDetailSubtitle';
@@ -9,10 +12,10 @@ import {MealDetailList} from '../../components/MealDetailList/MealDetailList';
 import {IconButton} from '../../components/IconButton/IconButton';
 
 interface MealDetailsScreenProps {
-  route: RouteProp<ScreenNameStackParamList, ScreenName.MEALS_DETAILS>;
+  route: RouteProp<ScreenNameStackParamList, StackScreenName.MEALS_DETAILS>;
   navigation: NavigationProp<
     ScreenNameStackParamList,
-    ScreenName.MEALS_DETAILS
+    StackScreenName.MEALS_DETAILS
   >;
 }
 
