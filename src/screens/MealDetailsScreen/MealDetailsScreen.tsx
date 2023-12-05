@@ -1,6 +1,7 @@
-import {useLayoutEffect, useMemo, useCallback} from 'react';
-import {Button, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {useLayoutEffect, useMemo, useCallback, useContext} from 'react';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
+import {FavoritesContext} from '../../store/context/favorites-context';
 import {
   StackScreenName,
   ScreenNameStackParamList,
@@ -23,6 +24,7 @@ export const MealDetailsScreen = ({
   route,
   navigation,
 }: MealDetailsScreenProps) => {
+  const favoriteMealsCtx = useContext(FavoritesContext);
   const mealId = route.params.mealId;
 
   const selectedMeal = useMemo(
@@ -30,21 +32,30 @@ export const MealDetailsScreen = ({
     [mealId],
   );
 
-  const headerButtonPressHandler = useCallback(() => {
-    console.log('Header button pressed!');
-  }, []);
+  const mealIsFavorite: boolean = useMemo(
+    () => favoriteMealsCtx.ids.includes(mealId),
+    [favoriteMealsCtx.ids, mealId],
+  );
+
+  const changeFavoriteStatusHandler = useCallback(
+    () =>
+      mealIsFavorite
+        ? favoriteMealsCtx.removeFavorite(mealId)
+        : favoriteMealsCtx.addFavorite(mealId),
+    [mealIsFavorite, favoriteMealsCtx, mealId],
+  );
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <IconButton
-          icon="star"
+          icon={mealIsFavorite ? 'star' : 'star-outline'}
           color="white"
-          onPress={headerButtonPressHandler}
+          onPress={changeFavoriteStatusHandler}
         />
       ),
     });
-  }, [navigation, headerButtonPressHandler]);
+  }, [navigation, changeFavoriteStatusHandler]);
 
   return (
     <>

@@ -26,7 +26,7 @@ export const DrawerNavigator = () => {
   };
 
   const favoritesScreenOptions = {
-    title: 'All Categories',
+    title: 'Favorite meals',
     drawerIcon: ({color, size}: {color: string; size: number}) => (
       <Ionicons name="star" size={size} color={color} />
     ),
