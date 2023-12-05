@@ -1,14 +1,14 @@
 import {useCallback, useLayoutEffect, useMemo} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
-import {IMeal} from '../../types/Meal';
-import {MEALS, CATEGORIES} from '../../data/dummy-data';
-import {MealItem} from '../../components/MealItem/MealItem';
 import {
   StackScreenName,
   ScreenNameStackParamList,
 } from '../../navigation/types';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {IMeal} from '../../types/Meal';
+import {MEALS, CATEGORIES} from '../../data/dummy-data';
+import {MealItem} from '../../components/MealItem/MealItem';
+import {MealsList} from '../../components/MealsList/MealsList';
 
 interface MealsOverviewScreenProps {
   route: RouteProp<ScreenNameStackParamList, StackScreenName.MEALS_OVERVIEW>;
@@ -42,37 +42,5 @@ export const MealsOverviewScreen = ({
     [categoryId],
   );
 
-  const renderItem = useCallback(
-    ({item}: {item: IMeal}) => {
-      return (
-        <MealItem
-          id={item.id}
-          title={item.title}
-          imageUrl={item.imageUrl}
-          duration={item.duration}
-          complexity={item.complexity}
-          affordability={item.affordability}
-        />
-      );
-    },
-    [route],
-  );
-
-  const keyExtractor = (item: IMeal) => item.id;
-  return (
-    <View>
-      <FlatList
-        data={displayedMeals}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem}
-      />
-    </View>
-  );
+  return <MealsList items={displayedMeals} />;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-});

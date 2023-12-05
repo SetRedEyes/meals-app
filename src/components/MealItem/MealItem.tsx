@@ -1,11 +1,11 @@
 import {useCallback} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {Image, Platform, Pressable, StyleSheet, Text, View} from 'react-native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {
   StackScreenName,
   ScreenNameStackParamList,
 } from '../../navigation/types';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MealDetails} from '../MealDetails/MealDetails';
 
 interface MealItemProps {
@@ -29,7 +29,7 @@ export const MealItem = ({
     useNavigation<
       NativeStackNavigationProp<
         ScreenNameStackParamList,
-        StackScreenName.MEALS_CATEGORIES
+        StackScreenName.MEALS_DETAILS
       >
     >();
 
