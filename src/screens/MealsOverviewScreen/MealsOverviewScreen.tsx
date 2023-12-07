@@ -1,19 +1,18 @@
-import {useCallback, useLayoutEffect, useMemo} from 'react';
+import {useLayoutEffect, useMemo} from 'react';
 import {RouteProp} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {MergedStackParams} from '../../navigation/MergedParams';
 import {
   StackScreenName,
   ScreenNameStackParamList,
 } from '../../navigation/types';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {IMeal} from '../../types/Meal';
 import {MEALS, CATEGORIES} from '../../data/dummy-data';
-import {MealItem} from '../../components/MealItem/MealItem';
 import {MealsList} from '../../components/MealsList/MealsList';
 
 interface MealsOverviewScreenProps {
   route: RouteProp<ScreenNameStackParamList, StackScreenName.MEALS_OVERVIEW>;
   navigation: NativeStackNavigationProp<
-    ScreenNameStackParamList,
+    MergedStackParams,
     StackScreenName.MEALS_OVERVIEW
   >;
 }

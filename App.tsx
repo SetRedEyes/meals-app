@@ -1,15 +1,19 @@
 import {StyleSheet} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
+import {Provider} from 'react-redux';
+// import {FavoritesContextProvider} from './src/store/context/favorites-context';
 import {MainNavigatorContainer} from './src/navigators/MainNavigatorContainer';
-import {FavoritesContextProvider} from './src/store/context/favorites-context';
+import {store} from './src/store/redux/store';
 
 export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <FavoritesContextProvider>
+      {/* <FavoritesContextProvider> */}
+      <Provider store={store}>
         <MainNavigatorContainer />
-      </FavoritesContextProvider>
+      </Provider>
+      {/* </FavoritesContextProvider> */}
     </>
   );
 }

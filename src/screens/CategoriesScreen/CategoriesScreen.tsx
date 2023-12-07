@@ -4,15 +4,17 @@ import {NavigationProp} from '@react-navigation/native';
 import {
   StackScreenName,
   ScreenNameStackParamList,
+  DrawerScreenName,
 } from '../../navigation/types';
 import {CATEGORIES} from '../../data/dummy-data';
 import {ICategory} from '../../types/Category';
 import {CategoryGridTile} from '../../components/CategoryGridTile/CategoryGridTile';
+import { MergedStackParams } from '../../navigation/MergedParams';
 
 interface CategoriesScreenProps {
   navigation: NavigationProp<
-    ScreenNameStackParamList,
-    StackScreenName.MEALS_CATEGORIES
+    MergedStackParams,
+    DrawerScreenName.MEALS_CATEGORIES
   >;
 }
 

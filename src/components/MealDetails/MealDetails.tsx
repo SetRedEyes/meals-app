@@ -5,7 +5,7 @@ interface MealDetailsProps {
   duration: number;
   complexity: string;
   affordability: string;
-  textStyle: TextStyle;
+  textStyle?: TextStyle;
 }
 
 export const MealDetails = ({

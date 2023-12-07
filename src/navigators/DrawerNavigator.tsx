@@ -8,7 +8,6 @@ const Drawer = createDrawerNavigator();
 
 export const DrawerNavigator = () => {
   const drawerScreenOptions = {
-    headerBackTitle: 'Back',
     headerStyle: {backgroundColor: '#96684f'},
     headerTintColor: '#fff',
     sceneContainerStyle: {backgroundColor: '#3f2f25'},
