@@ -1,20 +1,23 @@
 import {useMemo} from 'react';
 // import {FavoritesContext} from '../../store/context/favorites-context';
+// import {RootState} from '../../store/redux/store';
+// import {useSelector} from 'react-redux';
 import {MealsList} from '../../components/MealsList/MealsList';
 import {MEALS} from '../../data/dummy-data';
 import {StyleSheet, Text} from 'react-native';
 import {View} from 'react-native';
-import {RootState} from '../../store/redux/store';
-import {useSelector} from 'react-redux';
+import {useFavoriteMealsStore} from '../../store/zustand/store';
 
 export const FavoritesScreen = () => {
   // const favoriteMealsCtx = useContext(FavoritesContext);
-  const favoriteMealIds = useSelector(
-    (state: RootState) => state.favoriteMeals,
-  );
+  // const favoriteMealIds = useSelector(
+  //   (state: RootState) => state.favoriteMeals,
+  // );
+
+  const favoriteMealIds = useFavoriteMealsStore(state => state.ids);
 
   const favoriteMeals = useMemo(
-    () => MEALS.filter(meal => favoriteMealIds.ids.includes(meal.id)),
+    () => MEALS.filter(meal => favoriteMealIds.includes(meal.id)),
     [favoriteMealIds],
   );
 

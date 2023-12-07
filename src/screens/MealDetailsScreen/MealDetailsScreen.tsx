@@ -2,9 +2,10 @@ import {useLayoutEffect, useMemo, useCallback} from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 // import {FavoritesContext} from '../../store/context/favorites-context';
-import {useDispatch, useSelector} from 'react-redux';
-import {addFavorite, removeFavorite} from '../../store/redux/favorites';
-import {RootState} from '../../store/redux/store';
+// import {useSelector} from 'react-redux';
+// import {addFavorite, removeFavorite} from '../../store/redux/favorites';
+// import {RootState} from '../../store/redux/store';
+import {useFavoriteMealsStore} from '../../store/zustand/store';
 import {
   StackScreenName,
   ScreenNameStackParamList,
@@ -26,11 +27,12 @@ export const MealDetailsScreen = ({
   navigation,
 }: MealDetailsScreenProps) => {
   // const favoriteMealsCtx = useContext(FavoritesContext);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  // const favoriteMealIds = useSelector(
+  //   (state: RootState) => state.favoriteMeals,
+  // );
 
-  const favoriteMealIds = useSelector(
-    (state: RootState) => state.favoriteMeals,
-  );
+  const favoriteMeals = useFavoriteMealsStore();
 
   const mealId = route.params.mealId;
 
@@ -40,16 +42,16 @@ export const MealDetailsScreen = ({
   );
 
   const mealIsFavorite: boolean = useMemo(
-    () => favoriteMealIds.ids.includes(mealId),
-    [favoriteMealIds.ids, mealId],
+    () => favoriteMeals.ids.includes(mealId),
+    [favoriteMeals.ids, mealId],
   );
 
   const changeFavoriteStatusHandler = useCallback(
     () =>
       mealIsFavorite
-        ? dispatch(removeFavorite(mealId))
-        : dispatch(addFavorite(mealId)),
-    [mealIsFavorite, favoriteMealIds, mealId],
+        ? favoriteMeals.removeFavorite(mealId)
+        : favoriteMeals.addFavorite(mealId),
+    [mealIsFavorite, favoriteMeals, mealId],
   );
 
   useLayoutEffect(() => {
