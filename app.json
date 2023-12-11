@@ -12,9 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "buildNumber": "1.0.0",
       "supportsTablet": true
@@ -24,10 +22,11 @@
       "adaptiveIcon": {
         "foregroundImage": "src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.setredeyes.MyRecipeBook"
     },
     "web": {
-      "favicon": "src/assets/favicon.png"
+      "favicon": "src/assets/adaptive-icon.png"
     },
     "extra": {
       "eas": {
